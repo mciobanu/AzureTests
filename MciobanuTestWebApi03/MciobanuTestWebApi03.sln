@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MciobanuTestWebApi03", "MciobanuTestWebApi03\MciobanuTestWebApi03.csproj", "{44CA1A1F-542C-4CE2-B82B-66FB11E6D65F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{EE496D07-A4F2-48DF-AB55-B5444D5F2E0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{CB270D3D-B30B-4312-A2C9-AB42292EEF42}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{CB12C4EE-34D3-46DD-BA50-717BAF59FB2C}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\MciobanuTestWebApi03.json = PublishScripts\Templates\MciobanuTestWebApi03.json
+		PublishScripts\Templates\MciobanuTestWebApi03.param.dev.json = PublishScripts\Templates\MciobanuTestWebApi03.param.dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44CA1A1F-542C-4CE2-B82B-66FB11E6D65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CA1A1F-542C-4CE2-B82B-66FB11E6D65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CA1A1F-542C-4CE2-B82B-66FB11E6D65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CA1A1F-542C-4CE2-B82B-66FB11E6D65F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB270D3D-B30B-4312-A2C9-AB42292EEF42} = {EE496D07-A4F2-48DF-AB55-B5444D5F2E0A}
+		{CB12C4EE-34D3-46DD-BA50-717BAF59FB2C} = {EE496D07-A4F2-48DF-AB55-B5444D5F2E0A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,29 @@
+{
+  "siteName": {
+    "value": "MciobanuTestWebApi03"
+  },
+  "hostingPlanName": {
+    "value": "Default1"
+  },
+  "siteLocation": {
+    "value": "West Europe"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "siteMode": {
+    "value": "Limited"
+  },
+  "computeMode": {
+    "value": "0"
+  },
+  "subscriptionId": {
+    "value": "2bfe2d1a-b59b-4869-8ad1-65787c439abf"
+  },
+  "resourceGroup": {
+    "value": "Default-Web-WestEurope"
+  }
+}

@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Math API tests</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Math API tests</h1>
+
+    <div>
+        <h2>History</h2>
+        <input type="button" value="Get history" onclick="getHistory();" />
+        <input type="button" value="Clear history" onclick="clearHistory();" />
+        <ul id="infos" />
+    </div>
+    
+    <div>
+        <h2>Square (value must exist))</h2>
+        <input type="text" id="sq" size="5" />
+        <input type="button" value="Compute Square" onclick="square();" />
+        <p id="sqResult" />
+    </div>
+    
+    <div>
+        <h2>Add (first value must exist)</h2>
+        <input type="text" id="add1" size="5" />
+        <input type="text" id="add2" size="5" />
+        <input type="text" id="add3" size="5" />
+        <input type="text" id="add4" size="5" />
+        <input type="button" value="Compute Addition" onclick="add();" />
+        <p id="addResult" />
+    </div>
+
+    <div>
+        <br />
+        <p id="tmpInfo" />
+    </div>
+
+    <div>
+        <h2>Some request examples</h2>
+        <p><a href="/api/math/GetSquare?x=178" target="_blank">/api/math/GetSquare?x=178</a></p>
+        <p><a href="/api/math/Add?x=4&z=2" target="_blank">/api/math/Add?x=4&z=2</a></p>
+        <p><a href="/api/math/Add?t=9&x=4&z=2" target="_blank">/api/math/Add?t=9&x=4&z=2</a></p>
+        <p><a href="/api/math/GetHistory" target="_blank">/api/math/GetHistory</a></p>
+        <p>(/api/math/delete_history should be sent as a DELETE)</p>
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+
+    $(document).ready(function () {
+        getHistory();
+    });
+
+    function getHistory(dontClearInfo) {
+        $.getJSON("api/math/GetHistory")
+            .done(function (data) {
+                var $infos = $('#infos');
+                while (infos.firstChild) {
+                    infos.removeChild(infos.firstChild);
+                }
+                $.each(data, function (key, item) {
+                    // Add a list item for the product.
+                    $('<li>', { text: formatItem(item) }).appendTo($('#infos'));
+                });
+                if (!dontClearInfo) {
+                    $('#tmpInfo').text("");
+                }
+            });
+    }
+
+    function clearHistory() {
+        $.ajax({
+            url: '/api/math/delete_history',
+            type: 'DELETE',
+            success: function (result) {
+                getHistory(true);
+                $('#tmpInfo').text(result);
+            }
+        });
+    }
+
+
+    function formatItem(item) {
+        return JSON.stringify(item);
+    }
+
+    function square() {
+        var x = $('#sq').val();
+        $.getJSON("api/math/GetSquare?x=" + x)
+            .done(function (data) {
+                $('#sqResult').text(formatItem(data));
+                $('#tmpInfo').text("");
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                $('#sqResult').text('Error: ' + err);
+                $('#tmpInfo').text("");
+            });
+    }
+
+    function add() {
+        var req = "";
+        var a = $('#add4').val();  //!!! parameter order is different than what the 
+        // function that implements it expects, but the controller does the right thing
+        if (a) {
+            req += "&t=" + a;
+        }
+        var a = $('#add2').val();
+        if (a) {
+            req += "&y=" + a;
+        }
+        var a = $('#add1').val();
+        if (a) {
+            req += "&x=" + a;
+        }
+        var a = $('#add3').val();
+        if (a) {
+            req += "&z=" + a;
+        }
+
+        req = "api/math/Add?" + req.substring(1);
+        $('#tmpInfo').text(req);
+
+        $.getJSON(req)
+            .done(function (data) {
+                $('#addResult').text(formatItem(data));
+            })
+            .fail(function (jqXHR, textStatus, err) {
+                $('#addResult').text('Error: ' + err);
+            });
+    }
+    </script>
+</body>
+</html>
