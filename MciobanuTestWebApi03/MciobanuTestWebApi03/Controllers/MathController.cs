@@ -1,4 +1,4 @@
-﻿using MciobanuTestWebApi03.Models;
+using MciobanuTestWebApi03.Models;
 
 using System;
 using System.Collections.Generic;
@@ -30,14 +30,6 @@ namespace MciobanuTestWebApi03.Controllers
         {
             double ResVal = X * X;
             MathInfo1 Res = new MathInfo1("square", ResVal, X);
-            Infos.Add(Res);
-            return Ok(Res);
-        }
-
-        public IHttpActionResult GetDouble(double X)
-        {
-            double ResVal = X * X;
-            MathInfo1 Res = new MathInfo1("double", ResVal, X);
             Infos.Add(Res);
             return Ok(Res);
         }
