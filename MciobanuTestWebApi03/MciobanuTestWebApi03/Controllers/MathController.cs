@@ -34,13 +34,16 @@ namespace MciobanuTestWebApi03.Controllers
             return Ok(Res);
         }
 
-        // !!! use different names and/or names that don't begin with the HTTP method name
+        // !!! use different names
+        // !!! use names that don't begin with the HTTP method name
+        // !!! use nullable optional parameters
         [HttpGet]  // http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api
         [ActionName("add")]
-        public IHttpActionResult AddImpl(double X, double Y = 0, double Z = 0, double T = 0)
+        public IHttpActionResult AddImpl(double X, double? Y = null, double Z = 0, double T = 0)
         {
-            double ResVal = X + Y + Z + T;
-            MathInfo1 Res = new MathInfo4("double", ResVal, X, Y, Z, T);
+            double YConv = Y == null ? 0 : (double)Y;
+            double ResVal = X + YConv + Z + T;
+            MathInfo1 Res = new MathInfo4("double", ResVal, X, YConv, Z, T);
             Infos.Add(Res);
             return Ok(Res);
         }
