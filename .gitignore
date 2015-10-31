@@ -1,5 +1,30 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/MciobanuWcfService02/MciobanuWcfService02/obj/Debug
+/MciobanuWcfService02/MciobanuWcfService02/obj
+/MciobanuTestWebApi03/MciobanuTestWebApi03/bin
+/MciobanuTestWebApi03/MciobanuTestWebApi03/logs
+/MciobanuTestWebApi03/MciobanuTestWebApi03/obj
+/MciobanuTestWebApi03/packages
+/MciobanuWcfService02/MciobanuWcfService02/bin
+*.suo
+
+
+# START NugetPackageContentIgnoreSection -- automatically generated do not modify manually
+
+# jQuery 1.6.4
+#-source:SignlRTest01/packages/jQuery.1.6.4/Content/Scripts/jquery-1.6.4-vsdoc.js
+SignlRTest01/SignlRTest01/Scripts/jquery-1.6.4-vsdoc.js
+#-source:SignlRTest01/packages/jQuery.1.6.4/Content/Scripts/jquery-1.6.4.js
+SignlRTest01/SignlRTest01/Scripts/jquery-1.6.4.js
+#-source:SignlRTest01/packages/jQuery.1.6.4/Content/Scripts/jquery-1.6.4.min.js
+SignlRTest01/SignlRTest01/Scripts/jquery-1.6.4.min.js
+
+# Microsoft.AspNet.SignalR.JS 2.2.0
+#-source:SignlRTest01/packages/Microsoft.AspNet.SignalR.JS.2.2.0/content/Scripts/jquery.signalR-2.2.0.js
+SignlRTest01/SignlRTest01/Scripts/jquery.signalR-2.2.0.js
+#-source:SignlRTest01/packages/Microsoft.AspNet.SignalR.JS.2.2.0/content/Scripts/jquery.signalR-2.2.0.min.js
+SignlRTest01/SignlRTest01/Scripts/jquery.signalR-2.2.0.min.js
+
+# END NugetPackageContentIgnoreSection

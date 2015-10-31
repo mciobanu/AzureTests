@@ -45,6 +45,14 @@ namespace MciobanuWcfService02
         MathInfo4 GetAdd(double X, double Y = 0, double Z = 0, double T = 0);
         //*/
 
+        [OperationContract]
+        [WebGet(UriTemplate = "test_guid?guid={guid}", ResponseFormat = WebMessageFormat.Json)]
+        string TestGuid(Guid guid);
+
+        [OperationContract]
+        [WebGet(UriTemplate = "test_int?x={x}", ResponseFormat = WebMessageFormat.Json)]
+        int TestInt(int x);
+
         /*[OperationContract] //!!! IHttpActionResult is an WebAPI2 thing, so doesn't make sense here
         [WebGet(UriTemplate = "Add?X={X}&Y={Y}&Z={Z}&T={T}", ResponseFormat = WebMessageFormat.Json)]
         IHttpActionResult GetAdd(double X, double Y = 0, double Z = 0, double T = 0);//*/

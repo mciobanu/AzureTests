@@ -15,7 +15,7 @@
     </div>
     
     <div>
-        <h2>Square (value must exist))</h2>
+        <h2>Square (value must exist)</h2>
         <input type="text" id="sq" size="5" />
         <input type="button" value="Compute Square" onclick="square();" />
         <p id="sqResult" />
@@ -32,9 +32,33 @@
     </div>
 
     <div>
+        <h2>Test string params</h2>
+        <p><a href="/api/math/GetTestParams?p1=param 1&p2=pa;ra,m2" target="_blank">/api/math/GetTestParams?...</a></p>
+    </div>
+
+    <div>
+        <h2>Submit file via AJAX</h2>
+        <input type="file" id="fileInput" multiple />
+        <input type="button" onclick="uploadFile();" value="Upload file(s)" />
+        <p id="submitResult" />
+    </div>
+
+
+    <form id="file-form" action="/api/math/PostFile" method="POST" enctype="multipart/form-data">
+        <h2>Submit file via form</h2>
+        <input type="file" id="file-select" name="photos[]" multiple />
+        <input type="submit">
+        <!--
+            <button type="submit" id="upload-button">Upload</button>
+        -->
+
+    </form>
+
+    <div>
         <br />
         <p id="tmpInfo" />
     </div>
+
 
     <div>
         <h2>Some request examples</h2>
@@ -45,12 +69,51 @@
         <p>(/api/math/delete_history should be sent as a DELETE)</p>
     </div>
 
+
+
+
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
 
     $(document).ready(function () {
         getHistory();
     });
+
+
+    // from http://stackoverflow.com/questions/10320232/how-to-accept-a-file-post-asp-net-mvc-4-webapi
+    // not able to send "multipart/form-data"
+    // see also http://igstan.ro/posts/2009-01-11-ajax-file-upload-with-pure-javascript.html
+    /*function uploadFile01() {
+        var xhr = new XMLHttpRequest();
+        var file = document.getElementById('fileInput').files[0];
+        xhr.open("POST", "/api/math/PostFile");
+        xhr.setRequestHeader("filename", file.name);
+        //xhr.setRequestHeader("enctype", "multipart/form-data");
+        / *var boundary = this.generateBoundary();
+        var contentType = "multipart/form-data; boundary=" + boundary;
+        xhr.setRequestHeader("Content-Type", contentType);* /
+        xhr.setRequestHeader("Content-Type", "multipart/form-data");
+        xhr.send(file);
+    }*/
+
+    // from http://stackoverflow.com/questions/9395911/sending-a-file-as-multipart-through-xmlhttprequest and
+    // http://stackoverflow.com/questions/9713058/sending-post-data-with-a-xmlhttprequest
+    function uploadFile() {
+        var formData = new FormData();
+        var inp = document.getElementById("fileInput");
+        for (var i = 0; i < inp.files.length; i++) {
+            formData.append("File" + i, inp.files[i]);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/math/PostFile");
+        xhr.onreadystatechange = function () {//Call a function when the state changes.
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById("submitResult").innerHTML = xhr.responseText;
+            }
+        }
+        xhr.send(formData);
+    }
 
     function getHistory(dontClearInfo) {
         $.getJSON("api/math/GetHistory")

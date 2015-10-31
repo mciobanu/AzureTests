@@ -107,5 +107,15 @@ namespace MciobanuWcfService02
             httpRes.Content = content;
             return httpRes;
         }//*/
+
+        public string TestGuid(Guid guid)
+        {
+            return guid.ToString();
+        }
+
+        public int TestInt(int x)
+        {
+            return x + 9;
+        }
     }
 }

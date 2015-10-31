@@ -7,6 +7,7 @@ namespace MciobanuTestWebApi03.Models
 {
     public class MathInfo1
     {
+        public string id = DateTime.UtcNow.ToString("s", System.Globalization.CultureInfo.InvariantCulture); //DateTime.Now.ToUniversalTime().;
         public string Operation { get; set; }
         public double Result { get; set; }
         public double X { get; set; }

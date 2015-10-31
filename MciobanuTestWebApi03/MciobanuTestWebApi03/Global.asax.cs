@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 
+using System.IO;
+using log4net;
+
 namespace MciobanuTestWebApi03
 {
     public class WebApiApplication : System.Web.HttpApplication
@@ -12,6 +15,7 @@ namespace MciobanuTestWebApi03
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
         }
     }
 }
